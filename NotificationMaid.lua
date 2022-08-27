@@ -47,7 +47,7 @@ local function create_Notification_Bin()
 	local ScreenGui = Instance.new("ScreenGui")
 
 	ScreenGui.Name = "Notification_Bin";
-	ScreenGui.DisplayOrder = (maidSettings["Draw Over UIs"]) and math.huge or maidSettings["Display Order"]
+	ScreenGui.DisplayOrder = (maidSettings["Draw Over UIs"]) and 999999999 or maidSettings["Display Order"]
 	ScreenGui.IgnoreGuiInset = maidSettings["Ignore_Inset"]
 
 	ScreenGui.Parent = PlayerGui
