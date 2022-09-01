@@ -3,9 +3,9 @@
 	Written by Plasma,
 	@PlasmaRB on Twitter
 	
-	Notification Types: {
-		notification
-		question
+	Notification Types (string): {
+		"notification"
+		"question"
 	}
 	
 	You can add more by creating your own frame under "OptionButtons" (BaseNotification.OptionButtons).
@@ -47,12 +47,12 @@ local function create_Notification_Bin()
 	local ScreenGui = Instance.new("ScreenGui")
 
 	ScreenGui.Name = "Notification_Bin";
-	ScreenGui.DisplayOrder = (maidSettings["Draw Over UIs"]) and 999999999 or maidSettings["Display Order"]
+	ScreenGui.DisplayOrder = (maidSettings["Draw Over UIs"]) and 999999999 or maidSettings["Display Order"] or 1
 	ScreenGui.IgnoreGuiInset = maidSettings["Ignore_Inset"]
 
 	ScreenGui.Parent = PlayerGui
 
-	return ScreenGui
+	return ScreenGui;
 end
 
 local NotificationBin = PlayerGui:FindFirstChild("Notification_Bin") or create_Notification_Bin();
@@ -116,15 +116,15 @@ function module.display_Notification( notification_Style:string, header_Title:st
 
 	currentData = {
 		["NotificationID"] = tostring(tick()),
-		["MessageUI"] = newNotification;
-		["UISignals"] = buttonClickedSignals;
-		["Finished_Signal"] = promptFinishSignal;
-	}
+		["MessageUI"] = newNotification,
+		["UISignals"] = buttonClickedSignals,
+		["Finished_Signal"] = promptFinishSignal,
+	};
 
 	local buttonClicked =  promptFinishSignal.Event:Wait().Name; -- Result
-	module.remove_Notification();
+	module.remove_Notification(); -- Clean Up Notification.
 
-	return buttonClicked
+	return buttonClicked;
 
 end;
 
